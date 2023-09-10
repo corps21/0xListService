@@ -16,14 +16,14 @@ contract Token is ERC20Burnable {
         _mint(msg.sender, 10000000 * 1e18);
     }
 
-    //1 NTFLX ---> 1 ETH;
+    //1 SRT ---> 1 ETH;
     uint256 constant _priceOfToken = 1e18;
 
     modifier checkAmount(uint256 _tokenAmount) {
         require(_tokenAmount * _priceOfToken == msg.value, "notEnoughEth");
         _;
     }
-    
+
 
     function buyAndApprove(uint256 _tokenAmount, address _toBeApproved) external payable {
         buyToken(_tokenAmount);
