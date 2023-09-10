@@ -1,66 +1,92 @@
-## Foundry
+# Decentralized Service Listing Platform with ERC-20 Token Integration
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Welcome to the Decentralized Service Listing Platform! This platform is built using Solidity and Foundry to enable users to list and purchase services using ERC-20 tokens. This README file will guide you through the setup and usage of the platform.
 
-Foundry consists of:
+## Table of Contents
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+1. [Introduction](#introduction)
+2. [Getting Started](#getting-started)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation)
+3. [Usage](#usage)
+4. [Smart Contracts](#smart-contracts)
+5. [Contributing](#contributing)
+6. [License](#license)
 
-## Documentation
+## 1. Introduction
 
-https://book.getfoundry.sh/
+The Decentralized Service Listing Platform is a blockchain-based application that allows users to create and list services they offer, and other users can purchase these services using ERC-20 tokens. It provides a transparent and secure way to conduct service transactions without relying on centralized intermediaries.
 
-## Usage
+Key features of this platform include:
+- ERC-20 Token Integration: Services are listed and purchased using ERC-20 tokens, providing a standardized and interoperable currency for transactions.
+- Decentralization: The platform operates on a decentralized network, ensuring transparency and security.
+- Solidity Smart Contracts: The core functionality is implemented using Solidity, a smart contract programming language for Ethereum.
 
-### Build
+## 2. Getting Started
 
-```shell
-$ forge build
-```
+### Prerequisites
 
-### Test
+Before you can use the Decentralized Service Listing Platform, make sure you have the following prerequisites:
 
-```shell
-$ forge test
-```
+1. Ethereum Wallet: You need an Ethereum wallet (e.g., MetaMask) to interact with the platform.
+2. Ethereum Testnet Tokens: Get some testnet Ethereum and ERC-20 tokens for testing purposes.
+3. Node.js and npm: Make sure you have Node.js and npm installed on your computer.
 
-### Format
+### Installation
 
-```shell
-$ forge fmt
-```
+Follow these steps to set up and run the Decentralized Service Listing Platform:
 
-### Gas Snapshots
+1. Clone the repository to your local machine:
 
-```shell
-$ forge snapshot
-```
+   ```bash
+   git clone https://github.com/corps21/0xListService.git
+   cd 0xListService
+   ```
 
-### Anvil
+2. Install project dependencies:
 
-```shell
-$ anvil
-```
+   ```bash
+   npm install
+   ```
 
-### Deploy
+3. Deploy the smart contracts to the Ethereum testnet or a local blockchain. You will need to configure your deployment parameters in the Solidity smart contract files.
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+4. Start the web application:
 
-### Cast
+   ```bash
+   npm start
+   ```
 
-```shell
-$ cast <subcommand>
-```
+5. Access the platform through a web browser at `http://localhost:3000`.
 
-### Help
+## 3. Usage
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Here are the basic steps to use the Decentralized Service Listing Platform:
+
+1. Connect your Ethereum wallet (e.g., MetaMask) to the platform.
+2. Browse listed services and choose the one you want to purchase.
+3. Click the "Purchase" button and confirm the transaction in your wallet.
+4. Once the transaction is confirmed, the service provider will receive the payment, and the service will be marked as purchased.
+
+## 4. Smart Contracts
+
+The core functionality of the platform is implemented in Solidity smart contracts. Here is an overview of the main smart contracts:
+
+- `Subscription.sol`: This contract handles the creation, listing, and purchase of services. It also manages the escrow of funds during transactions.
+
+To deploy these contracts, you can use tools like Remix or Truffle.
+
+## 5. Contributing
+
+We welcome contributions from the community to improve and expand the Decentralized Service Listing Platform. If you'd like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and submit a pull request.
+4. Ensure your code follows best practices and is well-documented.
+
+## 6. License
+
+This project is licensed under the [MIT License](LICENSE), which means you are free to use, modify, and distribute the code. Please review the license for more details.
+
+Thank you for using the Decentralized Service Listing Platform! If you have any questions or encounter any issues, feel free to reach out to us through the repository's issue tracker.
