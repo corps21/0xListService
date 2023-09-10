@@ -24,13 +24,12 @@ contract Token is ERC20Burnable {
         _;
     }
 
-
     function buyAndApprove(uint256 _tokenAmount, address _toBeApproved) external payable {
         buyToken(_tokenAmount);
         if (useAllowance[msg.sender] == true) {
-            increaseAllowance(_toBeApproved, _tokenAmount);
+            increaseAllowance(_toBeApproved, _tokenAmount * (10 ** decimals()));
         } else {
-            approve(_toBeApproved, _tokenAmount);
+            approve(_toBeApproved, _tokenAmount * (10 ** decimals()));
             useAllowance[msg.sender] = true;
         }
     }
