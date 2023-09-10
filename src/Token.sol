@@ -48,10 +48,11 @@ contract Token is ERC20Burnable {
 
     function convertEthToToken(uint256 _amount) public pure returns (uint256) {
         uint256 amountofToken = (_amount * 1e18) / 1e18;
-        return amountofToken;
+        return amountofToken / 1e18;
     }
 
     receive() external payable {
-        buyToken(convertEthToToken(msg.value));
+        uint256 amountOfToken = convertEthToToken(msg.value);
+        buyToken(amountOfToken);
     }
 }

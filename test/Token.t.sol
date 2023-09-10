@@ -32,7 +32,7 @@ contract TestToken is Test {
 
     function test_Withdraw() external {
         address Contract = address(token);
-        deal(Contract, 10 * 1e18);
+        deal(Contract, TOKEN_AMOUNT * PRICE);
         vm.prank(addOfOwner);
         token.withdraw();
         assertEq(token.balanceOfOwner(), 0);
@@ -82,5 +82,27 @@ contract TestToken is Test {
         vm.expectRevert();
         token.buyAndApprove{value:balanceOfUser}(TOKEN_AMOUNT, addOfSubscription);
         vm.stopPrank();
+    }
+
+    function test_recieve() external {
+        uint256 balanceOfUser = TOKEN_AMOUNT * PRICE;
+        deal(addOfUser, balanceOfUser);
+
+        vm.startPrank(addOfUser);
+        (bool success,) = payable(address(token)).call{value:balanceOfUser}("");
+
+        console.log(success);
+
+        vm.stopPrank();
+
+        // assertEq(token.balanceOf(addOfUser), TOKEN_AMOUNT * (10 ** token.decimals()) );
+
+    }
+
+    function test_convertEthToToken() external {
+        uint256 amount = TOKEN_AMOUNT * PRICE;
+        deal(addOfUser,amount);
+
+        assertEq(token.convertEthToToken(amount), TOKEN_AMOUNT);
     }
 }
