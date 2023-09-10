@@ -2,6 +2,8 @@
 
 Welcome to the Decentralized Service Listing Platform! This platform is built using Solidity and Foundry to enable users to list and purchase services using ERC-20 tokens. This README file will guide you through the setup and usage of the platform.
 
+The project is in development stages
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
