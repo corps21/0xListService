@@ -2,6 +2,8 @@
 
 Welcome to the Decentralized Service Listing Platform! This platform is built using Solidity and Foundry to enable users to list and purchase services using ERC-20 tokens. This README file will guide you through the setup and usage of the platform.
 
+# The project is in development stage #
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -72,9 +74,10 @@ Here are the basic steps to use the Decentralized Service Listing Platform:
 
 The core functionality of the platform is implemented in Solidity smart contracts. Here is an overview of the main smart contracts:
 
-- `Subscription.sol`: This contract handles the creation, listing, and purchase of services. It also manages the escrow of funds during transactions.
+-`Token.sol` : This contract handles the creation, purchase, approval of token associated with `Subscription.sol `
+- `Subscription.sol`: This contract handles the creation, listing, and purchase of services.
 
-To deploy these contracts, you can use tools like Remix or Truffle.
+To deploy these contracts, you can use tools like Etherjs, Web3js, Remix, Hardhat, etc.
 
 ## 5. Contributing
 
