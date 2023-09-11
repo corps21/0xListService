@@ -1,4 +1,4 @@
-import {ethers} from "../node_modules/ethers/dist/ethers.min.js";
+import {ethers} from "./ethers.min.js";
 
 const connectButton = document.querySelector("#connect");
 connectButton.onclick = connect;
