@@ -7,49 +7,55 @@ import {ERC20Burnable} from "../lib/openzeppelin-contracts/contracts/token/ERC20
 
 contract Token is ERC20Burnable {
     address immutable owner;
-    uint256 public balanceOfOwner;
 
     mapping(address => bool) useAllowance;
 
     constructor() ERC20("Service Token", "SRT") {
         owner = msg.sender;
-        _mint(msg.sender, 10000000 * 1e18);
+        _mint(msg.sender, 10000 * (10 ** decimals()));
     }
-
+    // 1 SRT = 1 * 10 ** 18 base unit tokens
     //1 SRT ---> 1 ETH;
-    uint256 constant _priceOfToken = 1e18;
+    //all the operations will be according to the base unit tokens suppose
+    // you want to transfer 100 SRT, you have to call the transfer function and pass `100 * 10 ** 18`
+    
+    uint256 constant _priceOfOneToken = 1 * 1e18;
 
     modifier checkAmount(uint256 _tokenAmount) {
-        require(_tokenAmount * _priceOfToken == msg.value, "notEnoughEth");
+        require(_tokenAmount  * _priceOfOneToken == msg.value, "notEnoughEth");
         _;
     }
 
     function buyAndApprove(uint256 _tokenAmount, address _toBeApproved) external payable {
         buyToken(_tokenAmount);
         if (useAllowance[msg.sender] == true) {
-            increaseAllowance(_toBeApproved, _tokenAmount * (10 ** decimals()));
+            increaseAllowance(_toBeApproved, _tokenAmount);
         } else {
-            approve(_toBeApproved, _tokenAmount * (10 ** decimals()));
+            approve(_toBeApproved, _tokenAmount);
             useAllowance[msg.sender] = true;
         }
     }
 
     function buyToken(uint256 _tokenAmount) public payable checkAmount(_tokenAmount) {
-        _mint(msg.sender, _tokenAmount * (10 ** decimals()));
-        balanceOfOwner += 1e18;
+        _mint(msg.sender, _tokenAmount);
+        //add withdraw
     }
 
-    function withdraw() external {
+    function withdraw(uint256 _amount) internal {
         require(msg.sender == owner, "Not Owner");
-        (bool success,) = payable(owner).call{value: balanceOfOwner}("");
+        (bool success,) = payable(owner).call{value: _amount}("");
         require(success, "call failed");
-        balanceOfOwner = 0;
     }
 
     function convertEthToToken(uint256 _amount) public pure returns (uint256) {
         uint256 amountofToken = (_amount * 1e18) / 1e18;
-        return amountofToken / 1e18;
+        return amountofToken;
     }
+
+    function convertTokenToEth(uint256 _amountOfToken) public pure returns (uint256) {
+
+    }
+
 
     receive() external payable {
         uint256 amountOfToken = convertEthToToken(msg.value);

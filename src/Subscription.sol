@@ -135,13 +135,13 @@ contract Subscription {
 
     function buySubscription(bytes32 code, Plans plan) external BurnToken(uint256(0), plan, code) {
         require(Userinfo[msg.sender].isActive == true, "Not a user");
-
         User storage user = Userinfo[msg.sender];
         uint256 id = user.noOfServices;
         uint256 duration;
 
         if (plan == Plans.YEARLY) {
             duration = 52 weeks;
+
         } else if (plan == Plans.MONTHLY) {
             duration = 4 weeks;
         }
@@ -152,6 +152,11 @@ contract Subscription {
         serviceStatus.boughtServiceOn = block.timestamp;
         serviceStatus.ServiceAvailableTill = block.timestamp + duration;
 
+        
+
         user.noOfServices++;
     }
 }
+
+
+///Add balance of seller and use orginal mechanism for handling the token in Token.sol

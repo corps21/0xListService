@@ -95,7 +95,7 @@ contract TestToken is Test {
 
         vm.stopPrank();
 
-        // assertEq(token.balanceOf(addOfUser), TOKEN_AMOUNT * (10 ** token.decimals()) );
+        assertEq(token.balanceOf(addOfUser), TOKEN_AMOUNT * (10 ** token.decimals()) );
 
     }
 
