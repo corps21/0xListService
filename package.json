@@ -1,0 +1,18 @@
+{
+  "name": "0xnetflix",
+  "version": "1.0.0",
+  "description": "Welcome to the Decentralized Service Listing Platform! This platform is built using Solidity and Foundry to enable users to list and purchase services using ERC-20 tokens. This README file will guide you through the setup and usage of the platform.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^6.7.1"
+  }
+}
