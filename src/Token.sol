@@ -58,7 +58,7 @@ contract Token is ERC20Burnable {
             1 SRT -----> 1e18 base unit tokens
             1e18 wei ----> 1e18 base unit token
             1 wei ----> 1e18 base unit token / 1e18 
-            x wei ----> 1e18 * x / 1e18 
+            x wei ----> (1e18 * x) / 1e18
         
         */
 
@@ -74,8 +74,8 @@ contract Token is ERC20Burnable {
             1 SRT ----> 1e18 wei
             1 SRT -----> 1e18 base unit tokens
             1e18 base unit token -----> 1e18 wei
-            1 base unit token ---> 1e18 / 1e18;
-            x base units -----> (x * 1e18) / 1e18;
+            1 base unit token ---> 1e18 / 1e18
+            x base units -----> (x * 1e18) / 1e18
 
          */
 
