@@ -90,6 +90,6 @@ We welcome contributions from the community to improve and expand the Decentrali
 
 ## 6. License
 
-This project is licensed under the [MIT License](LICENSE), which means you are free to use, modify, and distribute the code. Please review the license for more details.
+This project is licensed under the [MIT License](https://opensource.org/license/mit/), which means you are free to use, modify, and distribute the code. Please review the license for more details.
 
 Thank you for using the Decentralized Service Listing Platform! If you have any questions or encounter any issues, feel free to reach out to us through the repository's issue tracker.
