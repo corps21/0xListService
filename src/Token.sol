@@ -14,7 +14,6 @@ contract Token is ERC20Burnable {
         owner = msg.sender;
         _mint(msg.sender, 10000 * (10 ** decimals()));
     }
-    
 
     /* 
         1 SRT = 1 * 10 ** 18 base unit tokens
@@ -26,7 +25,7 @@ contract Token is ERC20Burnable {
     uint256 constant _priceOfOneToken = 1 * 1e18;
 
     modifier checkAmount(uint256 _tokenAmount) {
-        require(_tokenAmount  * _priceOfOneToken / 1e18 == msg.value, "notEnoughEth");
+        require(_tokenAmount * _priceOfOneToken / 1e18 == msg.value, "notEnoughEth");
         _;
     }
 
@@ -66,9 +65,8 @@ contract Token is ERC20Burnable {
     }
 
     function convertTokenToEth(uint256 _amountOfToken) public pure returns (uint256) {
-        
         uint256 amountOfEth = (_amountOfToken * _priceOfOneToken) / 1e18;
-        
+
         /*
         
             1 SRT ----> 1e18 wei

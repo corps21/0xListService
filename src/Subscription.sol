@@ -5,12 +5,10 @@ pragma solidity 0.8.19;
 import {Token} from "src/Token.sol";
 
 contract Subscription {
-    address immutable owner;
 
     Token token;
 
     constructor(address _addrOfToken) {
-        owner = msg.sender;
         token = Token(payable(_addrOfToken));
     }
 
@@ -18,24 +16,14 @@ contract Subscription {
 
     mapping(bytes32 => address) codeToSeller;
 
-    modifier BurnToken(uint256 _amount, Plans plan, bytes32 code) {
-        if (plan == Plans.NONE) {
-            token.burnFrom(msg.sender, _amount);
-        } else if (plan == Plans.MONTHLY) {
-            uint256 _amountOfSubscription = codeToService[code].priceOfMonthly;
-            token.burnFrom(msg.sender, _amountOfSubscription);
-        } else if (plan == Plans.YEARLY) {
-            uint256 _amountOfSubscription = codeToService[code].priceOfYearly;
-            token.burnFrom(msg.sender, _amountOfSubscription);
-        } else {
-            revert("Check your parameters");
-        }
+    modifier BurnToken(uint256 _fees) {
+        token.burnFrom(msg.sender, _fees);
         _;
     }
 
     uint256 constant REG_FEES = 5 * 1e18;
 
-    function sellerRegister() external BurnToken(REG_FEES, Plans.NONE, bytes32(0)) {
+    function sellerRegister() external BurnToken(REG_FEES) {
         require(SellerLogs[msg.sender].isActive == false, "Already Registered");
         SellerLogs[msg.sender].isActive = true;
     }
@@ -54,7 +42,7 @@ contract Subscription {
         uint256 balance;
     }
 
-    mapping(address => Seller) SellerLogs;
+    mapping(address => Seller) public SellerLogs;
 
     uint256 constant LIST_FEES = 1e18;
 
@@ -64,7 +52,8 @@ contract Subscription {
         Plans plan,
         uint256 _priceOfMonthly,
         uint256 _priceOfYearly
-    ) external BurnToken(LIST_FEES, Plans.NONE, bytes32(0)) returns (bytes32) {
+    ) external BurnToken(LIST_FEES) returns (bytes32) {
+
         require(SellerLogs[msg.sender].isActive == true, "Not a Seller");
         require(_priceOfMonthly != uint256(0), "Price can't be Zero");
         require(_priceOfYearly != uint256(0), "Price can't be Zero");
@@ -128,35 +117,40 @@ contract Subscription {
 
     uint256 constant REG_FEES_USER = 1e18;
 
-    function UserRegistration() external BurnToken(REG_FEES_USER, Plans.NONE, bytes32(0)) {
+    function UserRegistration() external BurnToken(REG_FEES_USER) {
         require(Userinfo[msg.sender].isActive == false, "Already Registered");
         Userinfo[msg.sender].isActive = true;
     }
 
-    function buySubscription(bytes32 code, Plans plan) external BurnToken(uint256(0), plan, code) {
+    function buySubscription(bytes32 code, Plans plan) external {
+        
         require(Userinfo[msg.sender].isActive == true, "Not a user");
+        require(code != bytes32(0),"invalid code");
+        require(plan == Plans.MONTHLY || plan == Plans.YEARLY,"Choose a valid Plan");
+
         User storage user = Userinfo[msg.sender];
         uint256 id = user.noOfServices;
         uint256 duration;
+        uint256 tokenToTransfer;
+
+        Service memory service = codeToService[code];
 
         if (plan == Plans.YEARLY) {
             duration = 52 weeks;
-
+            tokenToTransfer = service.priceOfYearly;
         } else if (plan == Plans.MONTHLY) {
             duration = 4 weeks;
+            tokenToTransfer = service.priceOfMonthly;
         }
 
-        ServiceStatus storage serviceStatus = Userinfo[msg.sender].serviceLogs[id];
-
-        serviceStatus.service = codeToService[code];
+        ServiceStatus storage serviceStatus = user.serviceLogs[id];
+        serviceStatus.service = service;
         serviceStatus.boughtServiceOn = block.timestamp;
         serviceStatus.ServiceAvailableTill = block.timestamp + duration;
 
-        
+        address seller = codeToSeller[code];
 
+        token.transferFrom(msg.sender, seller, tokenToTransfer);
         user.noOfServices++;
     }
 }
-
-
-///Add balance of seller and use orginal mechanism for handling the token in Token.sol

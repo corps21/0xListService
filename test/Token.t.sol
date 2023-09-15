@@ -39,31 +39,30 @@ contract TestToken is Test {
         deal(Contract, balance);
         vm.expectRevert();
         token.withdraw(balance + 1 ether);
-        
     }
 
     function test_BuyToken() external {
         uint256 balanceOfUser = TOKEN_AMOUNT * PRICE / 1e18;
         deal(addOfUser, balanceOfUser);
-        
+
         vm.startPrank(addOfUser);
-        token.buyToken{value:balanceOfUser}(TOKEN_AMOUNT);
+        token.buyToken{value: balanceOfUser}(TOKEN_AMOUNT);
         vm.stopPrank();
 
-        assertEq(token.balanceOf(addOfUser),TOKEN_AMOUNT);
+        assertEq(token.balanceOf(addOfUser), TOKEN_AMOUNT);
     }
 
     function test_failBuyTokenForWrongValue() external {
-         //changing the price of Token (1e18) to (1e16) cause revert("notEnoughEth")
+        //changing the price of Token (1e18) to (1e16) cause revert("notEnoughEth")
         uint256 priceOfToken = 1e16;
-        
+
         uint256 balanceOfUser = TOKEN_AMOUNT * priceOfToken / 1e18;
         deal(addOfUser, balanceOfUser);
-        
+
         vm.startPrank(addOfUser);
         vm.expectRevert();
-        token.buyToken{value:balanceOfUser}(TOKEN_AMOUNT);
-        vm.stopPrank();   
+        token.buyToken{value: balanceOfUser}(TOKEN_AMOUNT);
+        vm.stopPrank();
     }
 
     function test_buyAndApprove() external {
@@ -71,7 +70,7 @@ contract TestToken is Test {
         deal(addOfUser, balanceOfUser);
 
         vm.startPrank(addOfUser);
-        token.buyAndApprove{value:balanceOfUser}(TOKEN_AMOUNT, addOfSubscription);
+        token.buyAndApprove{value: balanceOfUser}(TOKEN_AMOUNT, addOfSubscription);
         vm.stopPrank();
 
         assertEq(token.allowance(addOfUser, addOfSubscription), TOKEN_AMOUNT);
@@ -84,35 +83,33 @@ contract TestToken is Test {
 
         vm.startPrank(addOfUser);
         vm.expectRevert();
-        token.buyAndApprove{value:balanceOfUser}(TOKEN_AMOUNT, addOfSubscription);
+        token.buyAndApprove{value: balanceOfUser}(TOKEN_AMOUNT, addOfSubscription);
         vm.stopPrank();
     }
 
     function test_convertEthToToken() external {
-        uint256 amount = ( TOKEN_AMOUNT * PRICE ) / 1e18;
+        uint256 amount = (TOKEN_AMOUNT * PRICE) / 1e18;
         assertEq(token.convertEthToToken(amount), TOKEN_AMOUNT);
     }
 
     function test_convertTokenToEth() external {
         uint256 amount = TOKEN_AMOUNT * PRICE / 1e18;
 
-        assertEq(token.convertTokenToEth(TOKEN_AMOUNT),amount);
+        assertEq(token.convertTokenToEth(TOKEN_AMOUNT), amount);
     }
 
     function test_recieve() external {
+        uint256 balanceOfUser = TOKEN_AMOUNT * PRICE / 1e18;
 
-        uint256 balanceOfUser = TOKEN_AMOUNT * PRICE / 1e18 ;
-        
         deal(addOfUser, balanceOfUser);
 
         vm.startPrank(addOfUser);
-        (bool success,) = payable(address(token)).call{value:balanceOfUser}("");
+        (bool success,) = payable(address(token)).call{value: balanceOfUser}("");
 
         console.log(success);
 
         vm.stopPrank();
 
         assertEq(token.balanceOf(addOfUser), TOKEN_AMOUNT);
-
     }
 }
