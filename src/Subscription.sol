@@ -12,9 +12,9 @@ contract Subscription {
         token = Token(payable(_addrOfToken));
     }
 
-    mapping(bytes32 => Service) codeToService;
+    mapping(bytes32 => Service) public codeToService;
 
-    mapping(bytes32 => address) codeToSeller;
+    mapping(bytes32 => address) public codeToSeller;
 
     modifier BurnToken(uint256 _fees) {
         token.burnFrom(msg.sender, _fees);
@@ -28,7 +28,7 @@ contract Subscription {
         SellerLogs[msg.sender].isActive = true;
     }
 
-    function getCode(address _caller) internal view returns (bytes32) {
+    function getCode(address _caller) public view returns (bytes32) {
         bytes32 code = keccak256(abi.encode(_caller, blockhash(block.timestamp - 1)));
         return code;
     }
@@ -55,19 +55,21 @@ contract Subscription {
     ) external BurnToken(LIST_FEES) returns (bytes32) {
 
         require(SellerLogs[msg.sender].isActive == true, "Not a Seller");
-        require(_priceOfMonthly != uint256(0), "Price can't be Zero");
-        require(_priceOfYearly != uint256(0), "Price can't be Zero");
-
+    
         bytes32 code = getCode(msg.sender);
         Service storage service = codeToService[code];
 
         if (plan == Plans.BOTH) {
             service.priceOfMonthly = _priceOfMonthly;
             service.priceOfYearly = _priceOfYearly;
+            service.isMonthlyActive = true;
+            service.isYearlyActive = true;
         } else if (plan == Plans.MONTHLY) {
             service.priceOfMonthly = _priceOfMonthly;
+            service.isMonthlyActive = true;
         } else if (plan == Plans.YEARLY) {
             service.priceOfYearly = _priceOfYearly;
+            service.isYearlyActive = true;
         } else if (plan == Plans.NONE) {
             revert("Plan is not Selected");
         }
@@ -111,6 +113,8 @@ contract Subscription {
         string name;
         string description;
         bytes32 code;
+        bool isMonthlyActive;
+        bool isYearlyActive;
         uint256 priceOfMonthly;
         uint256 priceOfYearly;
     }
