@@ -95,7 +95,7 @@ contract Subscription {
         YEARLY
     }
 
-    mapping(address => User) Userinfo;
+    mapping(address => User) public Userinfo;
 
     struct User {
         bool isActive;

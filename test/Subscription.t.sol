@@ -95,4 +95,31 @@ contract TestSubscription is Test {
         assertEq(_priceOfYearly, uint256(0));
     }
 
+
+    function test_userRegistration() external {
+        deal(address(token), addOfUser, REG_FEES_USER);
+
+        vm.startPrank(addOfUser);
+        token.approve(address(subscription), REG_FEES_USER);
+        subscription.UserRegistration();
+        vm.stopPrank();
+
+        (bool data,) = subscription.Userinfo(addOfUser);
+
+        assertEq(data, true);
+    }
+
+    function testfails_userRegistration() external {
+        deal(address(token), addOfUser, 2 * REG_FEES_USER);
+
+        vm.startPrank(addOfUser);
+        token.approve(address(subscription), REG_FEES_USER);
+        subscription.UserRegistration();
+        vm.expectRevert();
+        subscription.UserRegistration();
+        vm.stopPrank();
+    }
+
+    function test_buySubscription() external {
+    }
 }
