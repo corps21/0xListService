@@ -420,6 +420,15 @@ async function connect() {
   }
 }
 
+let timeline = gsap.timeline();
+
+timeline.from(".header-Animation",{
+  y:-200,
+  duration:1,
+  opacity:0,
+  stagger:0.25
+})
+
 
 
 
