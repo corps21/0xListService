@@ -74,7 +74,7 @@ html,body{
 }
 
 #footing{
-    margin-top:100px;
+    margin-top:50px;
     font-size: 25px;
     text-align: center;
     position: relative;
@@ -102,6 +102,12 @@ html,body{
     font-weight: 700;
     padding: 8px 16px;
     border-radius: 5%;
+}
+
+.scrolldown-Animation{
+    padding-top: 50px;
+    font-size: 20px;
+    text-align: center;
 }
 
 .page{

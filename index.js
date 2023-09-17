@@ -444,9 +444,10 @@ timeline.from("#intro-text",{
 
 timeline.from("#footing",{
   y:-50,
-  duration:0.1,
+  duration:0.25,
   opacity:0,
 })
+
 
 
 
