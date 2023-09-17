@@ -420,13 +420,32 @@ async function connect() {
   }
 }
 
-let timeline = gsap.timeline();
+let timeline = gsap.timeline()
 
 timeline.from(".header-Animation",{
   y:-200,
   duration:1,
   opacity:0,
   stagger:0.25
+})
+
+timeline.from(".heading",{
+  y:-200,
+  duration:0.75,
+  opacity:0,
+  stagger:0.25
+})
+
+timeline.from("#intro-text",{
+  y:-50,
+  duration:0.75,
+  opacity:0,
+})
+
+timeline.from("#footing",{
+  y:-50,
+  duration:0.1,
+  opacity:0,
 })
 
 
