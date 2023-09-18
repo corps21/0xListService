@@ -448,6 +448,19 @@ timeline.from("#footing",{
   opacity:0,
 })
 
+timeline.to("#footer",{
+  delay:0.5,
+  opacity:50,
+  display:"block",
+  y:40,
+  duration:1,
+  repeat:-1,
+  yoyo:true,
+  ease:"sine.inOut"
+})
+
+
+
 
 
 

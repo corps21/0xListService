@@ -53,6 +53,7 @@ html,body{
     position: sticky;
     top:0;
     background-color: black;
+    z-index: 999;
 }
 
 #header > div {
@@ -103,9 +104,13 @@ html,body{
     padding: 8px 16px;
     border-radius: 5%;
 }
+#transaction-page{
+    height:100vh;
+}
 
-.scrolldown-Animation{
-    padding-top: 50px;
-    font-size: 20px;
+#footer {
+    display:none;
+    margin-top:50px;
     text-align: center;
+    font-size: 20px;
 }
