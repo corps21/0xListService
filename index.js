@@ -1,10 +1,7 @@
-console.clear();
 import {ethers} from "./ethers.min.js";
 
-const connectButton = document.querySelector("#connect");
-console.log(connectButton)
+const connectButton = document.querySelector(".landing-page ul .image-and-button button");
 connectButton.onclick = connect;
-
 
 
 const contractAddress="0x5FbDB2315678afecb367f032d93F642f64180aa3";
@@ -407,8 +404,6 @@ const contractAbi = [
 let provider;
 let signer;
 
-
-
 async function connect() {
   if(typeof window.ethereum !== undefined) {
     try {
@@ -419,46 +414,6 @@ async function connect() {
     }
   }
 }
-
-let timeline = gsap.timeline()
-
-timeline.from(".header-Animation",{
-  y:-200,
-  duration:1,
-  opacity:0,
-  stagger:0.25
-})
-
-timeline.from(".heading",{
-  y:-200,
-  duration:0.75,
-  opacity:0,
-  stagger:0.25
-})
-
-timeline.from("#intro-text",{
-  y:-50,
-  duration:0.75,
-  opacity:0,
-})
-
-timeline.from("#footing",{
-  y:-50,
-  duration:0.25,
-  opacity:0,
-})
-
-timeline.to("#footer",{
-  delay:0.5,
-  opacity:50,
-  display:"block",
-  y:40,
-  duration:1,
-  repeat:-1,
-  yoyo:true,
-  ease:"sine.inOut"
-})
-
 
 
 

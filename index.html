@@ -12,46 +12,52 @@
 </head>
 <body>
     
-    <div id="landing-page">
-        <div id="header">
-            <a href="" class="forLinks header-Animation">Service Token</a>
-            <div>
-                <a href="https://github.com/corps21" class="forLinks header-Animation">About Me</a>
-                <a href="" class="forLinks header-Animation">Subscription Page</a>
-                <div id="header-button" class="header-Animation">
-                    <img src="MetaMask_Fox.svg.png" alt="">
-                    <button class="forButton" id="connect">Connect Wallet</button>
+    <div class="container landing-page">
+        <header>
+            <ul class="no-style-list">
+                <div class="link_wrapper">
+                    <li><a href="https://corps21.github.io/0xListService/">Service Token</a></li>
+                    <li><a href="https://github.com/corps21" class="no-mobile">About Me</a></li>
+                    <li><a href="" class="no-mobile">Subscription Page<a></li>
                 </div>
+                <li class="image-and-button no-mobile">
+                    <figure>
+                        <img src="./MetaMask_Fox.svg.png" alt="">
+                    </figure>
+                    <button>Connect</button>
+                </li>
+                <li><i class="ri-menu-line no-desktop"></i></li>
+            </ul>
+        </header>
+        <section>
+            <div class="headings text-center">
+                <h1>Unlocking Subscription</h1>
+                <h1>One Token at a Time</h1>
             </div>
-        </div>
-        <div id="aboutToken">
-            <div id="heading-container">
-                <div class="heading"> 
-                    Unlocking Subscriptions
-                </div>
-                <div class="heading">
-                    One Token at a Time
-                </div>
-            </div>
-            <div id="intro-text">
-                Introducing <span>Service Token</span>: Your Passport to Decentralized Services!
-
+            <div class="intro text-center">
+                Introducing <span>Service Token</span> :
+                Your Passport to Decentralized Services!
                 Say goodbye to traditional payments and embrace the future of service subscriptions. With Service Token, access a world of decentralized services effortlessly. It's fast, secure, and designed for the future. Join the revolution today!
             </div>
-            <div id="footing">
-                Powered by Ethereum
-                <img src="flat,750x,075,f-pad,750x1000,f8f8f8.u2.jpg" alt="">
+            <div class="section-bottom text-center">
+                <h2>Powered by Ethereum</h2>
+                <figure>
+                    <img src="flat,750x,075,f-pad,750x1000,f8f8f8.u2.jpg" alt="">
+                </figure>
             </div>
-        </div>
-        <div id="footer">
-            Scroll Down <i class="ri-arrow-down-fill"></i>
-        </div>
+        </section>
+        <footer>
+            <h2>Scroll Down</h2>
+            <i class="ri-arrow-down-fill"></i>
+        </footer>
     </div>
+
     <div id="transaction-page">
         
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="gsap.js"></script>
     <script type="module" src="index.js"></script>
 </body>
 </html>

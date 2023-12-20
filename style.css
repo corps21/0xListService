@@ -1,116 +1,189 @@
-*{
-    margin:0;
-    padding:0;
+*,*::after,*::before{
     box-sizing: border-box;
 }
 
-html,body{
-    font-family: Roboto;
-    height: 100%;
-    width: 100%;
-    background-color: #000000;
-    color:#eef0f2;
-    padding: 0px 32px;
+/*Resets*/
+
+body{
+    font-family: 'Roboto';
+    background-color: black;
+    color: white;
+    margin: 0;
 }
 
-#landing-page{
-    height:100vh;
+h1,h2,h3,p{
+    margin: 0;
 }
 
-#aboutToken{
-    margin-top: 200px;
+img{
+    max-width: 100%;
+    display: block;
+    height: auto;
 }
-#aboutToken .heading{
-    font-size: 120px;
+
+.no-style-list{
+    margin:0;
+    list-style: none;
+    padding: 0;
+}
+
+.no-style-list a {
+    color: white;
+    text-decoration: none;
+}
+
+
+/*General*/
+.container{
+    width: 80%;
+    margin-inline: auto;
+}
+
+.no-mobile{
+    display: none;
+}
+
+.no-desktop{
+    display: block;
+}
+
+.text-center{
     text-align: center;
 }
 
-#heading-container{
+
+/*Landing section*/
+
+.landing-page header ul{
+    padding-top: 2rem;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: clamp(0.85rem, 0.76vw + 0.69rem ,1.08rem);
+    margin-bottom: 5rem;
 }
 
-#intro-text{
-    margin-top:100px;
-    font-size: 25px;
-    text-align: center;
-    padding:0px 15vw;
+.landing-page .headings{
+    margin-bottom: 5rem;
+    font-size: clamp(1rem, 4.2857vw + 0.1428rem ,1.75rem);
+    font-weight: 300;
+
 }
 
-#intro-text span {
+.landing-page .intro{
+    line-height: 1.8;
+    font-size: clamp(0.85rem, 0.8571vw + 0.67857rem ,1rem);
+    margin-bottom: 5rem;
+}
+
+.landing-page .intro span{
     background-color: white;
     color: black;
-    border-radius: 16px;
-    padding: 2px 12px;
-    cursor: pointer;
-}
-
-#header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1vw 5vw;
-    position: sticky;
-    top:0;
-    background-color: black;
-    z-index: 999;
-}
-
-#header > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap:12vw;
-}
-
-#header-button{
-    display: flex;
-    align-items: center;
-    gap:10px;
-}
-
-#header-button img{
-    height: 40px;
-    width: 40px;
-}
-
-#footing{
-    margin-top:50px;
-    font-size: 25px;
-    text-align: center;
-    position: relative;
-}
-
-#footing img {
-    height: 50px;
-    position: absolute;
-    top: -0.5vw;
-    padding-left: 10px;
-}
-
-.forLinks{
-    text-decoration: none;
-    color: white;
-    font-size: 22px;
-    text-transform: capitalize;
-}
-
-.forButton {
-    color:black;
-    font-size: 22px;
-    background-color: #dadada;
-    cursor: pointer;
+    padding: 0.25rem 0.50rem;
+    border-radius: 1rem;
     font-weight: 700;
-    padding: 8px 16px;
-    border-radius: 5%;
-}
-#transaction-page{
-    height:100vh;
 }
 
-#footer {
-    display:none;
-    margin-top:50px;
-    text-align: center;
-    font-size: 20px;
+.landing-page .section-bottom h2{
+    font-size: clamp(0.85rem, 2.2857vw + 0.3928rem ,1.25rem);
+}
+
+.landing-page .section-bottom figure{
+    max-width: clamp(1.15rem, 2vw + 0.75rem ,1.5rem);
+    margin-inline: auto;
+}
+
+.section-bottom{
+    margin-bottom: 2rem;
+}
+
+.landing-page footer {
+    margin-bottom: 5rem;
+    display: flex;
+    gap: 0.25rem;
+    justify-content: center;
+}
+
+.landing-page footer h2{
+    font-size: clamp(0.75rem, 1.4285vw + 0.4642rem ,1rem);
+    margin-bottom: 0.50rem;
+    font-weight: 500;
+}
+
+
+@media (min-width:801px) {
+    .no-mobile{
+        display: block;
+    }
+
+    .no-desktop{
+        display: none;
+    }
+
+    .link_wrapper {
+        display: flex;
+        gap:2rem;
+    }
+    
+    .landing-page header ul{
+        padding-top: 1rem;
+        font-size: clamp(1.05rem, 0.9011vw + 0.5989rem ,1.5rem);
+        margin-bottom: 8rem;
+    }
+
+    .landing-page .image-and-button{
+        align-items: center;
+        display: flex;
+    }
+
+    .landing-page figure{
+        margin-right: 1rem; 
+    }
+
+    .landing-page .image-and-button button{
+        font-size: 1.25rem;
+        border: none;
+        border-radius: 0.25rem;
+        padding: 0.50rem 1rem;
+        cursor: pointer;
+        transition: all 0.25s;
+        font-weight: 700;
+    }
+
+    .landing-page .image-and-button button:hover{
+        opacity:85%;
+    }
+
+    .landing-page .image-and-button button:active{
+        transform: translate(2px,1px)
+    }
+
+    .landing-page .image-and-button figure{
+        width: 2.25rem;
+    }
+
+    .landing-page .headings{
+        font-size: clamp(1.75rem, 6.5081vw + -1.5081rem ,5rem);
+        line-height: 1.2;
+    }
+
+    .landing-page .intro{
+        max-width: 80%;
+        margin-inline: auto;
+        font-size: clamp(1rem, 1.0013vw + 0.4987rem ,1.5rem);
+    }
+
+    .landing-page .section-bottom h2 {
+        font-weight: 500;
+        font-size: 1.5rem;
+    }
+
+    .landing-page footer h2{
+        font-size: 1.25rem;
+    }
+
+    .landing-page footer i{
+        margin-top: 5px;
+    }
+
 }
